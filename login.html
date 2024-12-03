@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration</title>
+    <style>
+        /* Basic styling for the forms */
+        .form-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+            text-align: center;
+        }
+        input {
+            margin: 10px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Focus Feed</h1>
+
+    <div id="login-form" class="form-container">
+        <h2>Login</h2>
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="javascript:void(0);" onclick="toggleForm()">Register here</a></p>
+    </div>
+
+    <div id="register-form" class="form-container" style="display:none;">
+        <h2>Register</h2>
+        <form action="{{ url_for('register') }}" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="reg-username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="reg-password" required>
+
+            <label for="preferences">Select Preferences:</label>
+            <input type="checkbox" name="preferences" value="Technology"> Technology
+            <input type="checkbox" name="preferences" value="Science"> Science
+            <input type="checkbox" name="preferences" value="Health"> Health
+            
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="javascript:void(0);" onclick="toggleForm()">Login here</a></p>
+    </div>
+
+    <script>
+        // Toggle between login and registration forms
+        function toggleForm() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
